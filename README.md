@@ -6,28 +6,33 @@ npm install --save undo-redo-manager
 
 # Reference
 ## constructor
-- @param {Function} rollbackFn will execute when call undo or redo method. pass the stepDetail for the function(require return a stepDetail to push on undo/redo stack)
-- @param {Number} maxStep max stored undoList and redoList
+- @param {Function} rollbackFn 
+  - will execute when call undo or redo method. pass the stepDetail for the function(require return a stepDetail to push on undo/redo stack)
+- @param {Number} maxStep
+  - max stored undoList and redoList
 
 ## methods
-### push <hr/>
+### push
 - pushes a stepDetail on the undo stack, and clears the redo stack
-- @param {*} stepDetail the stepDetail to push on last of the undo stack
-### undo <hr/>
+- @param {*} stepDetail
+  - the stepDetail to push on last of the undo stack
+### undo
 - call once or more rollbackFn function, and push rollbackFn returns to redo stack
-- @param {Number} stepNum number of undo times
-### redo <hr/>
+- @param {Number} stepNum
+  - number of undo times
+### redo
 - call once or more rollbackFn function, and push rollbackFn returns to undo stack
-- @param {Number} stepNum number of redo times
+- @param {Number} stepNum
+  - number of redo times
 
 ## properties
-### canUndo <hr/>
+### canUndo
 - return {Boolean} True if have undo stack
-### canRedo <hr/>
+### canRedo
 - return {Boolean} True if have redo stack
-### undoStack <hr/>
+### undoStack
 - return undo stack
-### redoStack <hr/>
+### redoStack
 - return redo stack
 
 
