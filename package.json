@@ -4,6 +4,7 @@
   "description": "undo-redo-manager",
   "main": "./dist/index.js",
   "scripts": {
+    "prepublish": "babel ./src -d ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/hurryhuang1007/undo-redo-manager/issues"
   },
-  "homepage": "https://github.com/hurryhuang1007/undo-redo-manager#readme"
+  "homepage": "https://github.com/hurryhuang1007/undo-redo-manager#readme",
+  "peerDependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3"
+  }
 }
