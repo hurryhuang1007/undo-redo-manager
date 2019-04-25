@@ -1,0 +1,24 @@
+{
+  "name": "undo-redo-manager",
+  "version": "0.0.1",
+  "description": "undo-redo-manager",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hurryhuang1007/undo-redo-manager.git"
+  },
+  "keywords": [
+    "undo",
+    "redo",
+    "undo-redo-manager"
+  ],
+  "author": "Hurry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hurryhuang1007/undo-redo-manager/issues"
+  },
+  "homepage": "https://github.com/hurryhuang1007/undo-redo-manager#readme"
+}
