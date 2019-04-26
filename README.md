@@ -24,6 +24,8 @@ npm install --save undo-redo-manager
 - call once or more rollbackFn function, and push rollbackFn returns to undo stack
 - @param {Number} stepNum
   - number of redo times
+### clear
+- clear undo stack and redo stack
 
 ## properties
 ### canUndo

@@ -57,6 +57,14 @@ export default class Manager {
     return this
   }
 
+  /**
+   * clear undo stack and redo stack
+   */
+  clear() {
+    this._undoStack = []
+    this._redoStack = []
+  }
+
   get canUndo() {
     return !!this._undoStack.length
   }
