@@ -1,13 +1,13 @@
 # Undo-redo manager
 A simple manager for undo and redo. High customization, can cover update or diff update both.
 # Installation
-npm install --save undo-redo-manager
+`npm install --save undo-redo-manager`
 
 
 # Reference
 ## constructor
 - @param {Function} rollbackFn 
-  - will execute when call undo or redo method. pass the stepDetail for the function(require return a stepDetail to push on undo/redo stack)
+  - will execute when call undo or redo method. pass the stepDetail and isLastRollback for the function(require return a stepDetail to push on undo/redo stack)
 - @param {Number} maxStep
   - max stored undoList and redoList
 
@@ -42,7 +42,8 @@ npm install --save undo-redo-manager
 ## - cover update
 ```js
 let data = 1
-let manager = new Manager(detail => {
+let manager = new Manager((detail, isLast) => {
+  console.log(isLast)
   let tmp = data
   data = detail
   return tmp
@@ -54,16 +55,16 @@ data = 3
 manager.push(2)
 
 console.log(manager.undoStack) //[1,2]
-manager.undo(1)
+manager.undo(1) //true
 console.log(data) //2
 console.log(manager.redoStack) //[3]
 
 console.log(manager.undoStack) //[1]
-manager.undo(2)
+manager.undo(2) //false true
 console.log(data) //1
 console.log(manager.redoStack) //[3,2]
 
-manager.redo(1)
+manager.redo(1) // true
 console.log(data) //2
 console.log(manager.redoStack) //[3]
 

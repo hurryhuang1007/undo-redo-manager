@@ -15,7 +15,7 @@ var Manager =
 /*#__PURE__*/
 function () {
   /**
-   * @param {Function} rollbackFn will execute when call undo or redo method. pass the stepDetail for the function(require return a stepDetail to push on undo/redo stack)
+   * @param {Function} rollbackFn will execute when call undo or redo method. pass the stepDetail and isLastRollback for the function(require return a stepDetail to push on undo/redo stack)
    * @param {Number} maxStep max stored undoList and redoList
    */
   function Manager(rollbackFn) {
@@ -62,7 +62,7 @@ function () {
       if (!this.canUndo) return this;
       if (stepNum > this._undoStack.length) stepNum = this._undoStack.length;
 
-      var stepDetail = this._rollbackFn(this._undoStack[this._undoStack.length - 1]);
+      var stepDetail = this._rollbackFn(this._undoStack[this._undoStack.length - 1], stepNum === 1);
 
       this._undoStack.pop();
 
@@ -85,7 +85,7 @@ function () {
       if (!this.canRedo) return this;
       if (stepNum > this._redoStack.length) stepNum = this._redoStack.length;
 
-      this._undoStack.push(this._rollbackFn(this._redoStack[this._redoStack.length - 1]));
+      this._undoStack.push(this._rollbackFn(this._redoStack[this._redoStack.length - 1], stepNum === 1));
 
       this._redoStack.pop();
 

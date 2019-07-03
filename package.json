@@ -1,6 +1,6 @@
 {
   "name": "undo-redo-manager",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "A simple manager for undo and redo. High customization, can cover update or diff update both.",
   "main": "./dist/index.js",
   "scripts": {

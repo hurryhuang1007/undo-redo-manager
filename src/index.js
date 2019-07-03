@@ -1,6 +1,6 @@
 export default class Manager {
   /**
-   * @param {Function} rollbackFn will execute when call undo or redo method. pass the stepDetail for the function(require return a stepDetail to push on undo/redo stack)
+   * @param {Function} rollbackFn will execute when call undo or redo method. pass the stepDetail and isLastRollback for the function(require return a stepDetail to push on undo/redo stack)
    * @param {Number} maxStep max stored undoList and redoList
    */
   constructor(rollbackFn, maxStep = 500) {
@@ -36,7 +36,7 @@ export default class Manager {
   undo(stepNum = 1) {
     if (!this.canUndo) return this
     if (stepNum > this._undoStack.length) stepNum = this._undoStack.length
-    let stepDetail = this._rollbackFn(this._undoStack[this._undoStack.length - 1])
+    let stepDetail = this._rollbackFn(this._undoStack[this._undoStack.length - 1], stepNum === 1)
     this._undoStack.pop()
     if (!stepDetail) throw new Error('the rollbackFn not return a stepDetail, manager can not be work well')
     this._redoStack.push(stepDetail)
@@ -51,7 +51,7 @@ export default class Manager {
   redo(stepNum = 1) {
     if (!this.canRedo) return this
     if (stepNum > this._redoStack.length) stepNum = this._redoStack.length
-    this._undoStack.push(this._rollbackFn(this._redoStack[this._redoStack.length - 1]))
+    this._undoStack.push(this._rollbackFn(this._redoStack[this._redoStack.length - 1], stepNum === 1))
     this._redoStack.pop()
     if (stepNum > 1) this.redo(stepNum - 1)
     return this
